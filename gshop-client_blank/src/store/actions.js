@@ -18,7 +18,7 @@ export default {
     }
   },
   // 异步获取食品分类列表
-  async getCatagorys ({commit}) {
+  async getCategorys ({commit}) {
     // 发送异步ajax请求
     const result = await reqFoodCategory()
     // 提交一个mutation
@@ -31,7 +31,7 @@ export default {
   async getShops ({commit, state}) {
     // 发送异步ajax请求
     const {longitude,latitude}=state
-    const result = await reqAddress(longitude,latitude)
+    const result = await reqShops(longitude,latitude)
     // 提交一个mutation
     if (result.code === 0) {
       const shops = result.data
