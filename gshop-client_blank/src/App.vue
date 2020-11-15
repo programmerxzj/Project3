@@ -8,14 +8,14 @@
 <script>
   import FooterGuide from './components/FooterGuide/FooterGuide'
   import {mapActions} from 'vuex'
-  import {reqFoodCategory} from './api'
   export default {
     mounted(){
       // this.$store.dispatch('getAddress')
       this.getAddress()
+      this.getUserInfo()
     },
     methods:{
-      ...mapActions(['getAddress'])
+      ...mapActions(['getAddress','getUserInfo'])
     },
     components:{
       FooterGuide
