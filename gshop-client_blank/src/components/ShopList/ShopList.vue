@@ -1,7 +1,8 @@
 <template>
-  <div class="shop_container">
+  <div class="shop_container" @click="show()">
     <ul class="shop_list" v-if="shops.length">
-      <li class="shop_li border-1px" v-for="(shop,index) in shops" :key="index">
+      <li class="shop_li border-1px" v-for="(shop,index) in shops"
+          :key="index" @click="$router.push('/shop')">
         <a>
           <div class="shop_left">
             <img class="shop_img" src="./images/shop/1.jpg">
@@ -39,7 +40,7 @@
       </li>
     </ul >
     <ul v-else>
-      <li v v-for="item in 6">
+      <li v v-for="item in 3">
         <img src="./images/shop_back.svg" alt="back">
       </li>
     </ul>
@@ -61,6 +62,12 @@
     },
     components:{
       Star
+    },
+    methods:{
+      show(){
+        console.log(typeof this.shops);
+        console.log(this.shops.length);
+      }
     }
 
   }

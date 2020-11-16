@@ -1,9 +1,17 @@
 /*
 通过mutation间接更新state的多个方法的对象
  */
-import {RECEIVE_ADDRESS, RECEIVE_CATEGORYS, RECEIVE_SHOPS, RECEIVE_USER_INFO,RESET_USER_INFO} from './mutations-types'
+import {
+  RECEIVE_ADDRESS, RECEIVE_CATEGORYS, RECEIVE_SHOPS,
+  RECEIVE_USER_INFO,RESET_USER_INFO,
+  RECEIVE_RATINGS,RECEIVE_INFO,RECEIVE_GOODS
+} from './mutations-types'
 
-import {reqAddress, reqFoodCategory, reqShops, reqUserInfo,reqLogout} from '../api'
+import {
+  reqAddress, reqFoodCategory, reqShops,
+  reqUserInfo,reqLogout,
+  reqShopGoods,reqShopInfo,reqShopRatings
+} from '../api'
 
 export default {
   // 异步获取地址
@@ -17,6 +25,7 @@ export default {
       commit(RECEIVE_ADDRESS, {address})
     }
   },
+
   // 异步获取食品分类列表
   async getCategorys ({commit}) {
     // 发送异步ajax请求
@@ -27,6 +36,7 @@ export default {
       commit(RECEIVE_CATEGORYS, {categorys})
     }
   },
+
   // 异步获取商家列表
   async getShops ({commit, state}) {
     // 发送异步ajax请求
@@ -38,6 +48,7 @@ export default {
       commit(RECEIVE_SHOPS, {shops})
     }
   },
+
 //  同步获取用户信息
   recordUser ({commit}, userInfo) {
     commit(RECEIVE_USER_INFO, {userInfo})
@@ -51,6 +62,7 @@ export default {
       commit(RECEIVE_USER_INFO, {userInfo})
     }
   },
+
 //  异步退出
   async logout({commit}) {
     const result = await reqLogout()
@@ -59,4 +71,32 @@ export default {
     }
   },
 
+// 异步获取商家信息
+  async getShopInfo({commit}) {
+    const result = await reqShopInfo()
+    if (result.code === 0) {
+      const info = result.data
+      commit(RECEIVE_INFO, {info})
+    }
+  },
+
+  // 异步获取商家评价列表
+  async getShopRatings({commit}) {
+    const result = await reqShopRatings()
+    if (result.code === 0) {
+      const ratings = result.data
+      commit(RECEIVE_RATINGS, {ratings})
+      // 数据更新了, 通知一下组件
+    }
+  },
+
+  // 异步获取商家商品列表
+  async getShopGoods({commit}, callback) {
+    const result = await reqShopGoods()
+    if (result.code === 0) {
+      const goods = result.data
+      commit(RECEIVE_GOODS, {goods})
+      // 数据更新了, 通知一下组件
+    }
+  },
 }
