@@ -4,7 +4,8 @@
 import {
   RECEIVE_ADDRESS, RECEIVE_CATEGORYS, RECEIVE_SHOPS,
   RECEIVE_USER_INFO,RESET_USER_INFO,
-  RECEIVE_RATINGS,RECEIVE_INFO,RECEIVE_GOODS
+  RECEIVE_RATINGS,RECEIVE_INFO,RECEIVE_GOODS,
+  DECREMENT_FOOD_COUNT,INCREMENT_FOOD_COUNT
 } from './mutations-types'
 
 import {
@@ -97,6 +98,16 @@ export default {
       const goods = result.data
       commit(RECEIVE_GOODS, {goods})
       // 数据更新了, 通知一下组件
+      callback && callback()
     }
   },
+
+//  同步更新food中的count值
+  updateFoodCount({commit},{isAdd,food}){
+    if(isAdd){
+      commit(INCREMENT_FOOD_COUNT,{food})
+    }else {
+      commit(DECREMENT_FOOD_COUNT,{food})
+    }
+  }
 }
