@@ -43,6 +43,7 @@
           </li>
         </ul>
       </div>
+      <ShopCart/>
     </div>
     <Food :food="food" ref="food"/>
   </div>
@@ -53,6 +54,7 @@
   import BScroll from 'better-scroll'
   import CartControl from '../../../components/CartControl/CartControl'
   import Food from '../../../components/Food/Food'
+  import ShopCart from '../../../components/ShopCart/ShopCart'
 
   export default {
     data () {
@@ -119,7 +121,6 @@
       // 显示点击的food
       showFood(food){
         this.food=food
-
         this.$refs.food.toggleShow()
       }
 
@@ -137,7 +138,8 @@
     },
     components:{
       CartControl,
-      Food
+      Food,
+      ShopCart
     }
   }
 </script>
