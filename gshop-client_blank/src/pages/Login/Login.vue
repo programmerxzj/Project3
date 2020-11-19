@@ -135,16 +135,16 @@
         } else {// 密码登陆
           const {name, pwd, captcha} = this
           if (!this.name) {
-            // 用户名必须指定
-            this.showAlert('用户名必须指定')
+            // 用户名必须输入
+            this.showAlert('用户名必须输入')
             return
           } else if (!this.pwd) {
-            // 密码必须指定
-            this.showAlert('密码必须指定')
+            // 密码必须输入
+            this.showAlert('密码必须输入')
             return
           } else if (!this.captcha) {
-            // 验证码必须指定
-            this.showAlert('验证码必须指定')
+            // 验证码必须输入
+            this.showAlert('验证码必须输入')
             return
           }
           // 发送ajax请求密码登陆

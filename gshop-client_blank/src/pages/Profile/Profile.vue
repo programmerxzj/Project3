@@ -112,7 +112,7 @@
             Toast('成功退出')
           },
           action => {
-            console.log('点击了取消')
+            Toast('不退出点啥呢?')
           }
         )
       }
